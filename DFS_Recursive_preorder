@@ -1,0 +1,13 @@
+class Tree
+{
+    // Return a list containing the inorder traversal of the given tree
+    void inOrder(Node root)
+    {
+        // Code
+        if(root==null)
+           return;
+        System.out.println(root.data);
+        inOrder(root.left);
+        inOrder(root.right);
+    }
+}
