@@ -1,0 +1,20 @@
+class Tree
+{
+    // Return a list containing the inorder traversal of the given tree
+    void inOrder(Node root)
+    {
+        // Code
+        if(root==null)
+           return;
+        inOrder(root.left);
+        System.out.println(root.data);
+        inOrder(root.right);
+    }
+}
+
+
+COMPLEXITIES : In worst case, considering your parsed tree is a skewed tree, then, 
+               both time and space complexities whether it is implemented recursively or iteratively is O(n).
+
+               In an average case however, if you are considering a balanced/close-to-balanced tree, 
+               the time complexity is always O(n) as you HAVE to visit each node where as space complexity changes to O(log n).
