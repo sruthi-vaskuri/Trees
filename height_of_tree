@@ -1,0 +1,19 @@
+class Tree
+{
+    // return the Height of the given Binary Tree
+    int height(Node root) 
+    {
+         // Your code here
+         if(root==null)
+         return 0;
+         int l=height(root.left);
+         int r=height(root.right);
+         return Math.max(l,r)+1;
+    }   
+}
+
+Height is considered as the maximum number of nodes exists from root to leaf node
+Time Complexity : O(n)
+
+
+ITERATIVE CAN BE DONE USING LEVEL ORDER TRAVERSAL
