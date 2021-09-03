@@ -1,0 +1,25 @@
+class Tree {
+    /* Complete the function to get diameter of a binary tree */
+    int dia=0;
+    int height(Node root)
+    {
+        if(root==null)
+        return 0;
+        int l=height(root.left);
+        int r=height(root.right);
+        int d=l+r+1;
+        dia=Math.max(dia,d);
+        return Math.max(l,r)+1;
+    }
+    int diameter(Node root) {
+        // Your code here
+    if(root==null)
+    return 0;
+    height(root);
+    return dia;
+    }
+}
+
+
+
+Reference :  https://practice.geeksforgeeks.org/problems/diameter-of-binary-tree/
