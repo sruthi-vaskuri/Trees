@@ -1,0 +1,25 @@
+class Solution
+{
+    int min(Node root){
+        if(root.left==null && root.right==null)
+           return 1;
+        int left=Integer.MAX_VALUE;
+        int right=Integer.MAX_VALUE;
+        if(root.left!=null)
+            left=min(root.left);
+        if(root.right!=null)
+            right=min(root.right);
+        return Math.min(left,right)+1;
+    }
+	int minDepth(Node root)
+	{
+	    //code here
+	    if(root==null)
+	      return 0;
+	    return min(root);
+	}
+}
+
+
+
+Reference : https://practice.geeksforgeeks.org/problems/minimum-depth-of-a-binary-tree/
