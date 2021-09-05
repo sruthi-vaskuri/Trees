@@ -1,0 +1,32 @@
+class Tree
+{
+    int max=Integer.MIN_VALUE;
+    int loc=Integer.MIN_VALUE;
+    int help(Node root){
+        if(root==null)
+           return Integer.MIN_VALUE;
+        if(root.left==null && root.right==null)
+          return root.data;
+        int l=help(root.left);
+        int r=help(root.right);
+        if(l==Integer.MIN_VALUE || r==Integer.MIN_VALUE){
+            // For Skew Trees
+            if(l==Integer.MIN_VALUE)
+              loc=root.data+r;
+            else
+              loc=root.data+l;
+            return l!=Integer.MIN_VALUE?root.data+l:root.data+r;
+        }
+        //System.out.println(l+" "+r);
+        max=Math.max(root.data+l+r,max);
+        return root.data+Math.max(l,r);
+    }
+    int maxPathSum(Node root)
+    { 
+        // code here 
+        if(root==null)
+          return 0;
+        help(root);
+        return max!=Integer.MIN_VALUE?max:loc;
+    } 
+}
