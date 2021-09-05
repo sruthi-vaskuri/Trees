@@ -1,0 +1,21 @@
+class Solution
+{
+    int max=0;
+    int sum(Node root){
+        if(root==null)
+           return 0;
+        int l=sum(root.left);
+        int r=sum(root.right);
+        return (l>r)?root.data+l:root.data+r;
+    }
+    int maxPathSum(Node root)
+    { 
+        // code here 
+        if(root==null)
+           return 0;
+        return sum(root);
+    } 
+}
+
+
+link : https://www.techiedelight.com/find-maximum-sum-root-to-leaf-path-binary-tree/
