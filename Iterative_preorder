@@ -1,0 +1,29 @@
+class Tree
+{
+    // Return a list containing the inorder traversal of the given tree
+    ArrayList<Integer> preOrder(Node root)
+    {
+        // Code
+        ArrayList<Integer> arr=new ArrayList<>();
+        Stack<Node> st=new Stack<>();
+        if(root==null)
+           return arr;
+        while(true){
+            if(root==null){
+                if(st.isEmpty())
+                   break;
+                Node p=st.pop();
+                root=p.right;
+            }else{
+                st.push(root);
+                arr.add(root.data);
+                root=root.left;
+            }
+        }
+        return arr;
+    } 
+}
+
+
+
+link : https://practice.geeksforgeeks.org/problems/preorder-traversal-iterative/1/
