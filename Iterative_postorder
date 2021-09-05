@@ -1,0 +1,32 @@
+class Tree {
+    ArrayList<Integer> postOrder(Node node) {
+        // code here
+        ArrayList<Integer> arr=new ArrayList<>();
+        Stack<Node> st=new Stack<>();
+        while(true){
+            if(node==null){
+                if(st.isEmpty())
+                    break;
+                Node temp=st.peek();
+                if(temp.right==null){
+                     arr.add(temp.data);
+                     st.pop();
+                while(!st.isEmpty() && st.peek().right==temp){
+                    temp=st.pop();
+                    arr.add(temp.data);
+                }
+                }else{
+                node=st.peek().right;
+                }
+            }else{
+                st.push(node);
+                node=node.left;
+            }
+        }
+        return arr;
+    }
+}
+
+
+
+Link : https://practice.geeksforgeeks.org/problems/postorder-traversal-iterative/1/
