@@ -1,0 +1,30 @@
+class Tree
+{
+    // Return a list containing the inorder traversal of the given tree
+    ArrayList<Integer> inOrder(Node root)
+    {
+        // Code
+        Stack<Node> st=new Stack<>();
+        ArrayList<Integer> arr=new ArrayList<>();
+        if(root==null)
+           return arr;
+        while(true){
+            if(root==null){
+                if(st.isEmpty())
+                   break;
+                Node p=st.pop();
+                arr.add(p.data);
+                root=p.right;
+            }else{
+                st.push(root);
+                root=root.left;
+            }
+        }
+        return arr;
+    }
+}
+
+
+
+
+Link : https://practice.geeksforgeeks.org/problems/inorder-traversal-iterative/1/
