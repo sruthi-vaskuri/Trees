@@ -30,3 +30,8 @@ class Tree
         return max!=Integer.MIN_VALUE?max:loc;
     } 
 }
+
+
+
+
+link : https://practice.geeksforgeeks.org/problems/maximum-path-sum/
