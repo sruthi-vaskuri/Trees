@@ -1,0 +1,80 @@
+class Solution
+{
+    static class Pair{
+        Node node;
+        int min;
+        Pair(Node node,int min){
+            this.node=node;
+            this.min=min;
+        }
+    }
+    
+    public static int minTime(Node root, int target) 
+    {
+        // Your code goes here
+        if(root==null)
+           return 0;
+        HashMap<Node,Node> map=new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+        Queue<Pair> burn = new LinkedList<>();
+        ArrayList<Node> visit=new ArrayList<>();
+        q.add(root);
+        boolean find=false;
+        while(!q.isEmpty()){
+            Node p=q.remove();
+            if(p.data==target){
+               find=true;
+               if(map.containsKey(p)){
+               Pair p1=new Pair(map.get(p),1);
+               burn.add(p1);
+               visit.add(map.get(p));
+               }
+            }
+            if(p.left!=null){
+                q.add(p.left);
+                map.put(p.left,p);
+                if(find){
+                    Pair p1=new Pair(p.left,1);
+                    burn.add(p1);
+                    visit.add(p.left);
+                }
+            }
+            if(p.right!=null){
+                q.add(p.right);
+                map.put(p.right,p);
+                if(find){
+                    Pair p1=new Pair(p.right,1);
+                    burn.add(p1);
+                    visit.add(p.right);
+                }
+            }
+            find=false;
+        }
+        int mini=0;
+        while(!burn.isEmpty()){
+            Pair p1=burn.remove();
+            Node p2=p1.node;
+            mini=Math.max(mini,p1.min);
+            if(map.containsKey(p2) && !visit.contains(map.get(p2))){
+               Pair p=new Pair(map.get(p2),p1.min+1);
+               burn.add(p);
+               visit.add(map.get(p2));
+            }
+             if(p2.left!=null && !visit.contains(p2.left)){
+                    Pair p=new Pair(p2.left,p1.min+1);
+                    burn.add(p);
+                    visit.add(p2.left);
+            }
+            if(p2.right!=null && !visit.contains(p2.right)){
+                    Pair p=new Pair(p2.right,p1.min+1);
+                    burn.add(p);
+                    visit.add(p2.right);
+            }
+        }
+        return mini;
+    }
+}
+
+
+
+link : https://practice.geeksforgeeks.org/problems/burning-tree/1/?track=amazon-trees#
