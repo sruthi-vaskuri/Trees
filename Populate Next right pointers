@@ -1,0 +1,26 @@
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        Queue<TreeLinkNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            TreeLinkNode prev=null;
+            int n=q.size();
+            for(int i=0;i<n;i++){
+                TreeLinkNode p=q.remove();
+                if(prev!=null){
+                    prev.next=p;
+                }
+                if(p.left!=null)
+                   q.add(p.left);
+                if(p.right!=null)
+                   q.add(p.right);
+                prev=p;
+            }
+            prev.next=null;
+        }
+    }
+}
+
+
+
+link : https://www.interviewbit.com/problems/populate-next-right-pointers-tree/
