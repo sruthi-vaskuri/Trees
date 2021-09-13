@@ -1,0 +1,88 @@
+public class Solution {
+    TreeNode Parent=null;
+    public int getheight(TreeNode A,int B,TreeNode parent,int height){
+        if(A==null)
+           return 0;
+        if(A.val==B){
+          Parent=parent;
+          return height;
+        }
+        int l=getheight(A.left,B,A,height+1);
+        int r=getheight(A.right,B,A,height+1);
+        if(l!=0)
+           return l;
+        return r;
+    }
+    public void getsiblings(TreeNode parent,int height,TreeNode A,ArrayList<Integer> arr,int h,TreeNode root){
+        if(A==null)
+           return;
+        if(h==height && parent!=root){
+            arr.add(A.val);
+            return;
+        }
+        getsiblings(parent,height,A.left,arr,h+1,A);
+        getsiblings(parent,height,A.right,arr,h+1,A);
+    }
+    public int[] solve(TreeNode A, int B) {
+        if(A.val==B)
+           return new int[0];
+        int height=getheight(A,B,null,0);
+        ArrayList<Integer> arr=new ArrayList<>();
+        getsiblings(Parent,height,A,arr,0,null);
+        int a[]=new int[arr.size()];
+        for(int i=0;i<arr.size();i++)
+           a[i]=arr.get(i);
+        return a;
+    }
+}
+
+
+
+
+Reference : https://www.youtube.com/watch?v=UyxnGWMvxwc&t=426s
+Link : https://www.interviewbit.com/problems/cousins-in-binary-tree/
+
+Check Below the alternative solution 
+
+public class Solution {
+    public int[] solve(TreeNode A, int B) {
+        if(A==null || A.val==B){
+            int a[] = {};
+            return a;
+        }
+        //if((A.left!=null && A.left.val==B ||A.right.val==B){)
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        Boolean flag = false;
+        TreeNode cur = null;
+        q.add(A);
+        while(!q.isEmpty() && !flag){
+            int s = q.size();
+            while(s-->0){
+                cur=q.poll();
+                if((cur.left!=null && cur.left.val==B) || (cur.right!=null && cur.right.val==B)){
+                        flag = true;
+                    
+                }else{
+                    if(cur.left!=null){
+                        q.add(cur.left);
+                    }
+                    if(cur.right!=null){
+                        q.add(cur.right);
+                    }
+                }
+            }
+        }
+        if(flag){
+            while(!q.isEmpty()){
+                cur=q.poll();
+                arr.add(cur.val);
+            }
+            
+        }
+        int[] a = new int[arr.size()];
+        for(int i=0;i<arr.size();i++)
+           a[i]=arr.get(i);
+        return a;
+    }
+}
