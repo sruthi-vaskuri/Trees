@@ -1,0 +1,43 @@
+class Solution
+{
+    //Function to return a list of integers denoting the node 
+    //values of both the BST in a sorted order.
+    public List<Integer> merge(Node root1,Node root2)
+    {
+        // Write your code here
+        Stack<Node> s1=new Stack<>();
+        Stack<Node> s2=new Stack<>();
+        List<Integer> l=new ArrayList<>();
+        while((root1!=null || !s1.isEmpty()) || (root2!=null || !s2.isEmpty())){
+            while(root1!=null){
+                s1.push(root1);
+                root1=root1.left;
+            }
+            while(root2!=null){
+                s2.push(root2);
+                root2=root2.left;
+            }
+            if(!s1.isEmpty() && !s2.isEmpty()){
+                if(s1.peek().data<s2.peek().data){
+                    root1=s1.peek().right;
+                    l.add(s1.pop().data);
+                }else{
+                    root2=s2.peek().right;
+                    l.add(s2.pop().data);
+                }
+            }
+            else if(!s1.isEmpty()){
+                root1=s1.peek().right;
+                l.add(s1.pop().data);
+            }
+            else{
+                root2=s2.peek().right;
+                l.add(s2.pop().data);
+            }
+        }
+        return l;
+    }
+}
+
+
+LINK : https://practice.geeksforgeeks.org/problems/merge-two-bst-s/1/?category[]=Tree&category[]=Tree&company[]=Amazon&company[]=Amazon&page=2&query=category[]Treecompany[]Amazonpage2company[]Amazoncategory[]Tree#
