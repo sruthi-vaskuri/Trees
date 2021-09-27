@@ -1,0 +1,22 @@
+class Tree
+{
+   
+    public static Node RemoveHalfNodes(Node root)
+    {
+        // Code Here
+       if(root==null)
+         return null;
+       root.left=RemoveHalfNodes(root.left);
+       root.right=RemoveHalfNodes(root.right);
+       if(root.left==null && root.right!=null)
+          return root.right;
+        if(root.left!=null && root.right==null)
+          return root.left;
+        return root;
+        
+    }
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/remove-half-nodes/1/?category[]=Tree&category[]=Tree&company[]=Amazon&company[]=Amazon&page=1&query=category[]Treecompany[]Amazonpage1company[]Amazoncategory[]Tree
