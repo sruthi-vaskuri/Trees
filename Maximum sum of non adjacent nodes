@@ -1,0 +1,27 @@
+class GFG
+{
+    //Function to return the maximum sum of non-adjacent nodes.
+    static int sum(Node root,boolean flag){
+        if(root==null)
+          return 0;
+        if(root.left==null && root.right==null){
+           if(flag==true)
+             return root.data;
+           return 0;
+        }
+        if(flag==true)
+           return root.data+sum(root.left,false)+sum(root.right,false);
+        return Math.max(sum(root.left,false),sum(root.left,true))+Math.max(sum(root.right,false),sum(root.right,true));
+    }
+    static int getMaxSum(Node root)
+    {
+        // add your code here
+        if(root==null)
+           return 0;
+        return Math.max(sum(root,true),sum(root,false));
+    }
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/maximum-sum-of-non-adjacent-nodes/1/?category[]=Tree&category[]=Tree&company[]=Amazon&company[]=Amazon&page=1&query=category[]Treecompany[]Amazonpage1company[]Amazoncategory[]Tree
