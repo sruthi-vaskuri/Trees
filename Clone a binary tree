@@ -1,0 +1,38 @@
+class Solution{
+    public void clone(Tree root,Tree root_clone,HashMap<Tree,Tree> map){
+        if(root==null)
+          return ;
+        root_clone.left=root.left!=null?map.get(root.left):null;
+        root_clone.right=root.right!=null?map.get(root.right):null;
+        root_clone.random=root.random!=null?map.get(root.random):null;
+        if(root.left!=null)
+            clone(root.left,map.get(root.left),map);
+        if(root.right!=null)
+            clone(root.right,map.get(root.right),map);
+        
+    }
+    public Tree cloneTree(Tree tree){
+       // add code here.
+       if(tree==null)
+          return null;
+       HashMap<Tree,Tree> map=new HashMap<>();
+       Queue<Tree> q=new LinkedList<>();
+       q.add(tree);
+       while(!q.isEmpty()){
+           Tree t=q.remove();
+           map.put(t,new Tree(t.data));
+           if(t.left!=null){
+               q.add(t.left);
+           }
+           if(t.right!=null){
+               q.add(t.right);
+           }
+       }
+       clone(tree,map.get(tree),map);
+       return map.get(tree);
+     }
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/clone-a-binary-tree/1/?category[]=Tree&category[]=Tree&company[]=Amazon&company[]=Amazon&page=1&query=category[]Treecompany[]Amazonpage1company[]Amazoncategory[]Tree#
