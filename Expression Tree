@@ -1,0 +1,23 @@
+class Solution {
+    public int evalTree(Node root) {
+        // Your code here.
+        if(root==null)
+           return 0;
+        if(root.left==null && root.right==null)
+           return Integer.parseInt(root.data);
+        int l=evalTree(root.left);
+        int r=evalTree(root.right);
+        if(root.data.equals("-"))
+          return l-r;
+        else if(root.data.equals("+"))
+          return l+r;
+        else if(root.data.equals("*"))
+          return l*r;
+        else
+          return l/r;
+    }
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/expression-tree/1/?company[]=Amazon&company[]=Amazon&page=1&category[]=Tree&query=company[]Amazonpage1company[]Amazoncategory[]Tree
