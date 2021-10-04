@@ -1,0 +1,58 @@
+ITERATIVE :
+
+class Tree
+{
+    void mirror(Node node)
+    {
+	// Your code here
+	if(node==null)
+	return ;
+	Queue<Node> p=new LinkedList<>();
+	p.add(node);
+	while(!p.isEmpty())
+	{
+	    int n=p.size();
+	    for(int i=0;i<n;i++)
+	    {
+	        Node cur=p.poll();
+	        Node temp=cur.left;
+	        cur.left=cur.right;
+	        cur.right=temp;
+	        if(cur.left!=null)
+	           p.add(cur.left);
+	       if(cur.right!=null)
+	           p.add(cur.right);
+	    }
+	}
+    }
+}
+
+
+
+
+
+RECURSIVE :
+
+
+class Solution {
+    // Function to convert a binary tree into its mirror tree.
+    Node help_mirror(Node node){
+        if(node==null)
+           return null;
+        if(node.left==null && node.right==null)
+          return node;
+        Node left=help_mirror(node.left);
+        Node right=help_mirror(node.right);
+        node.left=right;
+        node.right=left;
+        return node;
+    }
+    void mirror(Node node) {
+        if(node==null)
+           return;
+        help_mirror(node);
+    }
+}
+
+
+Link : https://practice.geeksforgeeks.org/problems/mirror-tree/1
