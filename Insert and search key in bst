@@ -1,0 +1,43 @@
+class Solution{
+    
+    // The function returns the root of the BST (currently rooted at 'root') 
+    // after inserting a new Node with value 'Key' into it. 
+    Boolean search(Node root,int Key)
+    {
+        if(root==null)
+        return false;
+        if(root.data==Key)
+        return true;
+        if(root.data<Key)
+          return search(root.right,Key);
+        return search(root.left,Key);
+    }
+    Node insert(Node root, int Key)
+    {
+        // your code here
+        Node cur=new Node(Key);
+        if(root==null)
+        return cur;
+        Node copy=root;
+        Node prev=null;
+        if(!search(root,Key))
+        {
+            while(root!=null)
+            {
+                prev=root;
+                if(root.data<Key)
+                  root=root.right;
+                else
+                  root=root.left;
+            }
+            if(prev.data<Key)
+               prev.right=cur;
+            else
+              prev.left=cur;
+        }
+        return copy;
+    }
+}
+
+
+Link : https://practice.geeksforgeeks.org/problems/insert-a-node-in-a-bst/1
