@@ -1,0 +1,56 @@
+class Solution
+{
+    ArrayList<Integer> l=new ArrayList<>();
+    void printleft(Node root){
+        if(root==null)
+           return;
+        if(root.left!=null){
+            l.add(root.data);
+            printleft(root.left);
+        }
+        else if(root.right!=null){
+            l.add(root.data);
+            printleft(root.right);
+        }
+    }
+    void printright(Node root){
+        if(root==null)
+           return;
+        if(root.right!=null){
+            printright(root.right);
+            l.add(root.data);
+        }
+        else if(root.left!=null){
+            printright(root.left);
+            l.add(root.data);
+        }
+    }
+    void printleaf(Node root){
+        if(root==null)
+           return;
+        if(root.left==null && root.right==null)
+           l.add(root.data);
+        if(root.left!=null)
+           printleaf(root.left);
+        if(root.right!=null)
+           printleaf(root.right);
+    }
+	ArrayList <Integer> printBoundary(Node node)
+	{
+	    if(node==null)
+	        return l;
+	    if(node.left==null && node.right==null){
+	        l.add(node.data);
+	        return l;
+	    }
+	    l.add(node.data);
+	    printleft(node.left);
+	    printleaf(node);
+	    printright(node.right);
+	    return l;
+	}
+}
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1#:~:text=Given%20a%20Binary%20Tree%2C%20find%20its%20Boundary%20Traversal.,preferring%20the%20left%20subtree%20over%20the%20right%20subtree.
