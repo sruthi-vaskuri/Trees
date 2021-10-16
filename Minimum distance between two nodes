@@ -1,0 +1,38 @@
+class GfG {
+    Node lca(Node root,int a,int b){
+        if(root==null)
+          return null;
+        if(root.data==a || root.data==b)
+          return root;
+        Node left=lca(root.left,a,b);
+        Node right=lca(root.right,a,b);
+        if(left==null && right==null)
+           return null;
+        if(left!=null && right!=null)
+           return root;
+        return left!=null?left:right;
+    }
+    int dist(Node root,int a,int c){
+        if(root==null)
+           return 0;
+        if(root.data==a)
+           return c;
+        int l=dist(root.left,a,c+1);
+        int r=dist(root.right,a,c+1);
+        if(l!=0)
+           return l;
+        return r;
+    }
+    int findDist(Node root, int a, int b) {
+        // Your code here
+        Node head=lca(root,a,b);
+        int c1=dist(head,a,0);
+        int c2=dist(head,b,0);
+        return c1+c2;
+    }
+}
+
+
+
+
+LINK : https://practice.geeksforgeeks.org/problems/min-distance-between-two-given-nodes-of-a-binary-tree/1
